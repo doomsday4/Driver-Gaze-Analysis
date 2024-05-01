@@ -31,9 +31,19 @@ The main goal of this project is to enhance the understanding of driver gaze beh
 <!-- - Development of a user-friendly interface for data visualization and analysis using Matplotlib and Plotly. -->
 - Continuous improvement of model accuracy through data augmentation techniques and algorithmic enhancements.
 
-## Currently Working On:
-- Improvement of image processing algorithms for Iris detection.
-- Synchronizing the iris position data and the gaze of the driver at that point of time.
+## Implementation:
+- I used the data of 11 participants and extracted the portion of the video from timestamp 3 minutes to 5 minutes for analysis. 
+- Each video segment comprised approximately 24,000 frames for both the left and right eyes. 
+- The frames needed to be extracted with their exact frame number, so that they could later be matched with the ground truth. Done using the frame_extraction.ipynb
+- Based on the World View camera, there were different classes of zones allotted to the frames of the video. Now, the challenge with this was that the world view camera was recording at 25fps, while the eye cameras recorded at almost 200fps.
+- I used the world-view of the participants, extracted the 2min part from their videos and got the frame IDs of the frames in there.
+- Next, I merged the data of the ground truth annotation based on the world-view camera and assigned the zone class for each of those frames from the world-view.
+- Now, the world view camera is recorded in a different frame rate than the left and right eye cameras, so I used the class zones from the world-view camera and assigned the respective zones to the frames of the eye cameras. This was done using linear interpolation. The code is given in the frame_extraction file.
+
+## Conclusion:
+- Detailed analysis of iris detection accuracy rates for left and right eyes across 11 participants, with accuracy rates ranging from 20% to 93%.
+- Based on these results, 7 out of 11 participants’ data have very high accuracy and this shows how different people have different outlooks while driving.
+- A lot of the false detection were majorly during the time of blinking, and lower accuracy implies higher blinking time, which might hinder the safe driving environment, which could be taken care of by the automation of the vehicles.
 
 <!-- ## Usage
 To use the Driver Gaze Detection system:
